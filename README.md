@@ -2,7 +2,7 @@
 
 이 Terraform 구성은 AWS Application Load Balancer (ALB)와 Network Load Balancer (NLB)를 조합한 고성능 도메인 기반 라우팅 시스템입니다. Transit Gateway를 통해 VPC 간 연결을 제공하며, 엔터프라이즈급 마이크로서비스 아키텍처에 최적화되어 있습니다.
 
-## 🏗️ 아키텍처
+## 아키텍처
 
 ```
 Internet → Frontend ALB (L7 Host-based routing) → Transit Gateway → Backend NLB (L4 TCP) → EC2 Instances
@@ -44,7 +44,7 @@ Internet → Frontend ALB (L7 Host-based routing) → Transit Gateway → Backen
         └───────────────────────────────┘
 ```
 
-## 📋 주요 구성 요소
+## 주요 구성 요소
 
 ### 1. **Frontend VPC**
 - **CIDR**: `10.1.0.0/16`
@@ -69,25 +69,25 @@ Internet → Frontend ALB (L7 Host-based routing) → Transit Gateway → Backen
 - **Service B**: 포트 8081에서 웹 서비스 제공
 - **접근**: SSM Session Manager를 통한 보안 접근
 
-## 🚀 주요 기능
+## 주요 기능
 
-### 🎯 **고급 라우팅**
+### **고급 라우팅**
 - **L7 라우팅**: Host header 기반 도메인 분기 (`service-a.example.com`, `service-b.example.com`)
 - **L4 로드 밸런싱**: NLB를 통한 고성능 TCP 트래픽 분산
 - **Multi-AZ**: 고가용성을 위한 다중 가용 영역 구성
 
-### 🔒 **보안 강화**
+### **보안 강화**
 - **Private 서브넷**: 백엔드 서비스의 격리된 환경
 - **SSM 접근**: SSH 키 없는 안전한 인스턴스 관리
 - **VPC Endpoints**: AWS 서비스 접근을 위한 프라이빗 연결
 - **Security Groups**: 최소 권한 네트워크 접근 제어
 
-### ⚡ **성능 최적화**
+### **성능 최적화**
 - **NLB**: 마이크로초 수준의 낮은 지연시간
 - **Transit Gateway**: 고대역폭 VPC 간 연결
 - **Health Checks**: `/health` 엔드포인트 기반 상태 모니터링
 
-## 📦 배포 방법
+## 배포 방법
 
 ### 1. **사전 준비**
 ```bash
@@ -137,7 +137,7 @@ ssm_connect_commands = {
 }
 ```
 
-## 🧪 테스트 방법
+## 테스트 방법
 
 ### **웹 서비스 테스트**
 ```bash
@@ -172,7 +172,7 @@ for i in {1..10}; do
 done
 ```
 
-## ⚙️ 커스터마이징
+## 커스터마이징
 
 ### **terraform.tfvars 파일 예시**
 ```hcl
@@ -206,7 +206,7 @@ domain_mappings = {
 | `backend_vpc_cidr` | Backend VPC CIDR | `10.2.0.0/16` |
 | `domain_mappings` | 서비스별 도메인 및 포트 매핑 | 기본 서비스 A, B |
 
-## 📊 리소스 현황
+## 리소스 현황
 
 ### **생성되는 리소스들**
 - **VPCs**: 2개 (Frontend, Backend)
@@ -226,7 +226,7 @@ domain_mappings = {
 - **VPC Endpoints**: ~$7
 - **총 예상**: ~$99/월 (프리 티어 제외)
 
-## 🔧 운영 관리
+## 운영 관리
 
 ### **모니터링**
 ```bash
@@ -247,7 +247,7 @@ aws logs describe-log-groups --log-group-name-prefix "/aws/elbv2"
 - Health Check 실패시 자동 트래픽 차단
 - CloudWatch 알람 설정 권장
 
-## 🧹 리소스 정리
+## 리소스 정리
 
 ```bash
 # 전체 인프라 삭제
@@ -257,7 +257,7 @@ terraform destroy --auto-approve
 terraform destroy -target aws_instance.service_a -target aws_instance.service_b
 ```
 
-## 🚨 주의사항
+## 주의사항
 
 ### **보안**
 - Production 환경에서는 WAF 적용 권장
@@ -274,7 +274,7 @@ terraform destroy -target aws_instance.service_a -target aws_instance.service_b
 - Reserved Instance로 장기 비용 절감 가능
 - Data Transfer 요금 모니터링 필요
 
-## 📞 지원
+## 지원
 
 문제 발생시 다음 로그를 확인:
 - ALB Access Logs (S3 저장 설정 필요)
