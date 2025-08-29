@@ -13,7 +13,7 @@ Internet → Frontend ALB (L7 Host-based routing) → Transit Gateway → Backen
                     Internet
                         │
         ┌───────────────┼───────────────┐
-        │    Frontend VPC (10.1.0.0/16)  │
+        │    Frontend VPC (10.1.0.0/16) │
         │               │               │
         │    ┌─────────────────────┐    │
         │    │   Application LB    │    │
@@ -36,7 +36,7 @@ Internet → Frontend ALB (L7 Host-based routing) → Transit Gateway → Backen
         │    │  (High Performance) │    │
         │    │  Port 8080 | 8081   │    │
         │    └─────────────────────┘    │
-        │            │        │        │
+        │             │        │        │
         │    ┌───────────┐ ┌───────────┐│
         │    │Service A  │ │Service B  ││
         │    │EC2 (8080) │ │EC2 (8081) ││
